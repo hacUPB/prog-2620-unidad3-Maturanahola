@@ -11,6 +11,7 @@ total = cuenta + propina
 
 #Calcular cuanto debe paga cada persona
 pago_por_persona = total/persona
-print ("propina total:"),round(propina,2)
-print ("total a pagar:"), round (total,2)
-print ("Cada persona debe pagar:"),round (pago_por_persona,2)
+
+print ("propina total:",propina)
+print ("total a pagar:",total)
+print ("Cada persona debe pagar",pago_por_persona)
