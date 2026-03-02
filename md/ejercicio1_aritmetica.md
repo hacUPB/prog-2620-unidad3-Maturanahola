@@ -19,5 +19,4 @@
     print ("propina total:",propina)
     print ("total a pagar:",total)
     print ("Cada persona debe pagar",pago_por_persona)
-
-![ejericio aritmetica 1](images/)
+    
