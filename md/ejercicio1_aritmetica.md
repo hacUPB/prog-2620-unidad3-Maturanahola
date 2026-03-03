@@ -20,4 +20,6 @@
     print ("total a pagar:",total)
     print ("Cada persona debe pagar",pago_por_persona)
 
-![Ejercicio_aritmetica](images/Ejericicio1_aritmetica.png)
+**EJECUCIÓN**
+
+![Ejercicio_aritmetica](/images/Ejericio_aritmetica_1.png)
