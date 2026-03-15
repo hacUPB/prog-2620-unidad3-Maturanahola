@@ -1,4 +1,4 @@
-# Nombres: Juan Esteban Maturana y Daniel Mano Tabares
+# Nombres: Juan Esteban Maturana
 
 consumo_base = 10
 headwind = 0.25 # 25% suponiendo que son vientos fuertes (Información sale de IA)
