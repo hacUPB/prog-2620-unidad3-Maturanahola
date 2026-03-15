@@ -1,62 +1,52 @@
 ## ENTRADAS,SALIDAS, CONSTANTES Y CONTROLES
-|---          |---                |---         |---               |
-|        ---  |---                |---         |---               |
-|**INPUTS**   |**OUTPUTS**        |**COSNTANTES**|**V.CONTROL**   |
-|PUNTO_CONTROL|CONTROL_COMBUSTIBLE|CONSUMO_BASE|COMBUSTIBLE_ACTUAL|
-|TRAMO        |      ------       |HEADWIND    |                  |
-|TIPO_VIENTO  |        -------    |TAILWIND    |                  |
-|---          |---                |RESERVA_LEGAL|              ---|
-|---          |---                |viento_nulo  |---               |
+
+![TABALA_DE_VARIABLES](/images/TABLA_DE_VARIABLES.png)
 
 ## PSEUDOCÓDIGO
-**1) Configuración de constantes y variables**
-
-    consumo_base = 10
-    headwind = 0.25 # 25%
-    tailwind = -0.125 #12.5
+    CONSUMO_BASE = 10
+    HEADWIND = 0.25
+    TAILWIND = -0.125
     viento_nulo = 0
-    viento = 0
-    Leer: combustible_inicial (combustible antes de despegar)
-    leer: reserva_legal (lo que hay en reserva)
 
-**2) BUCLE**
+**FUNCIÓN OBLIGATORIA (IA)**
+    FUNCION calcular_consumo_tramo(TRAMO, TIPO_VIENTO): 
 
-(Para cada punto de control)
+        SI TIPO_VIENTO == 1 
+            valor = 1 + HEADWIND
+        SINO SI TIPO_VIENTO == 2 
+            valor = 1 + TAILWIND
+        SINO
+            valor = 1 + viento_nulo
+        FIN SI
+        RETORNAR TRAMO * CONSUMO_BASE * valor
+    FIN FUNCION
 
-    for **i** in **range** (1,3)
+**INICIO DEL SISTEMA**
 
-        Leer: tramo (distancia en kilomentros)
-        leer: viento (ingrese 1. para headwind, 2.para tailwind, 3.nulo)
+    LEER COMBUSTIBLE_ACTUAL # Empieza con la carga inicial
+    LEER RESERVA_LEGAL # Reserva de combustible que debe tener o lleva en el avión
 
-    if viento == 1:
-        valor = headwind + 1 #aumenta el consumo
+**BUCLE**
 
-    elif viento == 2:
-        valor = tailwind + 1 #reduce el consumo
+    PARA PUNTO_CONTROL DESDE 1 HASTA 6 HACER   
+        MOSTRAR "Punto de Control actual: ", PUNTO_CONTROL
+        LEER TRAMO ("distancia en kilometros")
+        LEER TIPO_VIENTO (1: Headwind, 2: Tailwind, 3: Nulo)
 
-    else:
-        valor = 1 (No sufre cambios)
+        #Cálculo del gasto usando la función
+        GASTO_TRAMO = calcular_consumo_tramo(TRAMO, TIPO_VIENTO)
 
-**3) Calcular el gasto por tramo**
+**DECISIÓN**
+        SI (COMBUSTIBLE_ACTUAL - GASTO_TRAMO) < RESERVA_LEGAL ENTONCES:
 
-gasto_tramo = tramo * consumo_base * valor
+            MOSTRAR "ALERTA: Combustible insuficiente."
 
-**4) desición**
+        SINO:
+            COMBUSTIBLE_ACTUAL >= COMBUSTIBLE_ACTUAL - GASTO_TRAMO
+            CONTROL_COMBUSTIBLE = COMBUSTIBLE_ACTUAL
+            MOSTRAR "Tramo exitoso. Cantidad de combustible en el tanque: ", CONTROL_COMBUSTIBLE
+        FIN SI
+    FIN PARA
 
-**if** (combustible_actual - gasto_tramo) < reserva_legal:
-
-    mostar: "Alerta"
-    mostrar: 
-
-else: 
-
-    combustible_actual = combustible_actual - gasto_tramo (actualiza el combustible actual a lo que queda segín lo que se ha gastado en el tramo)
-
-    control_combustible = combustible_actual
-    
-
-
-
-
-
+FIN ALGORITMO
 
