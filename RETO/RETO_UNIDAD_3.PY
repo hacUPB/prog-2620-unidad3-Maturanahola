@@ -21,14 +21,14 @@ reserva_legal = float(input("ingrese la cantidad de combustible que lleva en res
 for punto_control in range(1,5):
   print(f"Punto de control actual {punto_control}")
   tramo = int(input("Ingrese la distancia en km"))
-  print("condición de viento (1: Hadwind, 2: Tailwind, 3: Nulo)")
-  tipo_viento = int(input("seleccione"))
+  print("condición de viento (1: Headwind, 2: Tailwind, 3: Nulo)")
+  tipo_viento = int(input("seleccione la condición del viento"))
 
   gasto_tramo = calcular_consumo_tramo (tramo, tipo_viento)
 
   if (combustible_actual - gasto_tramo) < reserva_legal:
     print("⚠️COMBUSTIBLE IN SUFICIENTE⚠️")
-    print (f"El tramo requiere {gasto_tramo}kg")
+    print (f"El tramo requiere {gasto_tramo}kg de combustible")
     break
   else:
     combustible_actual = combustible_actual - gasto_tramo
